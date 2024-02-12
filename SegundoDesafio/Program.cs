@@ -4,8 +4,8 @@ var fluxoSistema = 0;
 
 Console.WriteLine("Seja bem vindo, ao projeto de Calculadora!");
 
-while(fluxoSistema == 0)
-{
+while (fluxoSistema == 0)
+{                    
     Console.WriteLine("Digite a operação que deseja realiazar?");
     Console.WriteLine("Digite 1 para soma?");
     Console.WriteLine("Digite 2 para divisão?");
@@ -14,65 +14,81 @@ while(fluxoSistema == 0)
 
     var acaoDesejada = Convert.ToInt32(Console.ReadLine());
 
-    if(acaoDesejada == 1)
+    try
     {
-        Console.WriteLine("Digite o primeiro número a ser somado!");
-        int numero1 = Convert.ToInt32(Console.ReadLine());
+        if (acaoDesejada == 1)
+        {
+            try
+            {
+                Console.WriteLine("Digite o primeiro número a ser somado!");
+                int numero1 = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("Digite o segundo número a ser somado!");
-        int numero2 = Convert.ToInt32(Console.ReadLine());
-        var resultado = SomandoNumeros(numero1, numero2);
-        Console.WriteLine("A soma deu:");
-        Console.WriteLine(resultado);
+                Console.WriteLine("Digite o segundo número a ser somado!");
+                int numero2 = Convert.ToInt32(Console.ReadLine());
+                var resultado = SomandoNumeros(numero1, numero2);
+                Console.WriteLine("A soma deu:");
+                Console.WriteLine(resultado);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ops, algo deu errado");
+                Console.WriteLine("Deu erro:" + ex.StackTrace);
+            }
+        }
+
+        else if (acaoDesejada == 2)
+        {
+            Console.WriteLine("Digite o primeiro número a ser dividido!");
+            int numero1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Digite o segundo número a ser dividido!");
+            int numero2 = Convert.ToInt32(Console.ReadLine());
+
+            var resultado = DivisaoNumeros(numero1, numero2);
+            Console.WriteLine("A divisão deu:");
+            Console.WriteLine(resultado);
+        }
+
+        else if (acaoDesejada == 3)
+        {
+            Console.WriteLine("Digite o primeiro número a ser subtraído!");
+            int numero1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Digite o segundo número a ser subtraído!");
+            int numero2 = Convert.ToInt32(Console.ReadLine());
+
+            var resultado = SubtracaoNumeros(numero1, numero2);
+            Console.WriteLine("A subtração deu:");
+            Console.WriteLine(resultado);
+        }
+
+        else if (acaoDesejada == 4)
+        {
+            Console.WriteLine("Digite o primeiro número a ser multiplicado!");
+            int numero1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Digite o segundo número a ser multiplicado!");
+            int numero2 = Convert.ToInt32(Console.ReadLine());
+
+            var resultado = MultiplicacaoNumeros(numero1, numero2);
+            Console.WriteLine("A multiplicaçaõ deu:");
+            Console.WriteLine(resultado);
+        }
+
+        else
+        {
+            throw new ArgumentException("Opção fora dos padrões esperado");
+        }
     }
-
-    else if(acaoDesejada == 2)
+    catch (Exception ex)
     {
-        Console.WriteLine("Digite o primeiro número a ser dividido!");
-        int numero1 = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine("Digite o segundo número a ser dividido!");
-        int numero2 = Convert.ToInt32(Console.ReadLine());
-
-        var resultado = DivisaoNumeros(numero1, numero2);
-        Console.WriteLine("A divisão deu:");
-        Console.WriteLine(resultado);
-    }
-
-    else if(acaoDesejada == 3)
-    {
-        Console.WriteLine("Digite o primeiro número a ser subtraído!");
-        int numero1 = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine("Digite o segundo número a ser subtraído!");
-        int numero2 = Convert.ToInt32(Console.ReadLine());
-
-        var resultado = SubtracaoNumeros(numero1, numero2);
-        Console.WriteLine("A subtração deu:");
-        Console.WriteLine(resultado);
-    }
-
-    else if(acaoDesejada == 4)
-    {
-        Console.WriteLine("Digite o primeiro número a ser multiplicado!");
-        int numero1 = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine("Digite o segundo número a ser multiplicado!");
-        int numero2 = Convert.ToInt32(Console.ReadLine());
-
-        var resultado = MultiplicacaoNumeros(numero1, numero2);
-        Console.WriteLine("A multiplicaçaõ deu:");
-        Console.WriteLine(resultado);
-    }
-
-    else
-    {
-        Console.WriteLine("Ação inválida!");
+        Console.WriteLine("Ops, algo deu errado");
+        Console.WriteLine("Deu erro:" + ex.StackTrace);
     }
 
     Console.WriteLine("Digite S se deseja realizar outra operação ou N para encerrar!");
     var continuar = Console.ReadLine();
-    if(continuar == "N")
+    if (continuar == "N")
     {
         fluxoSistema = 1;
     }
